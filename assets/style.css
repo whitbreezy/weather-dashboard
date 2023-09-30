@@ -6,4 +6,11 @@ button{
 }
 .navbar-brand{
     color: white !important;
+    font-size: 200%;
+}
+.forecast-item{
+    font-size:18px;
+    background-color:#06367D;
+    padding: 16px;
+    color: white;
 }
