@@ -25,7 +25,7 @@ function getWeather(){
     //API call for forecast
     var forecastURL = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city +',us'+ "&appid=" + APIKey + "&units=imperial";
     //fetch current weather API data
-    fetch(weatherURL)
+    fetch(forecastURL)
         .then(function(response){
             return response.json();
             //convert data to json
@@ -37,7 +37,7 @@ function getWeather(){
             //set city header to city name
             $('#cityHeader').text(city);
             //create icon url from icon data point
-            var iconURL = "https://openweathermap.org/img/wn/" + data.weather[0].icon + "@2x.png"
+            var iconURL = "https://openweathermap.org/img/wn/" + data.list[0].weather[0].icon + "@2x.png"
             //create icon img element and set the src to the new icon url, add styling
             var iconEl = document.createElement('img');
             iconEl.setAttribute("src", iconURL);
@@ -45,22 +45,13 @@ function getWeather(){
             //add icon after today's date in header
             $('#cityDetails').append(iconEl);
             //set temp, wind, and humidity div text to their data points
-            $('#temp').text("Temperature: "+ data.main.temp + "° Farenheit");
-            $('#wind').text("Wind: " + data.wind.speed + "mph");
-            $('#humidity').text("Humidity: " + data.main.humidity +"%");
-        });
-    //fetch forecast api data
-    fetch(forecastURL)
-        .then(function(response){
-            return response.json();
-        })
-        .then(function(data){
-            console.log(data);
+            $('#temp').text("Temperature: "+ data.list[0].main.temp + "° Farenheit");
+            $('#wind').text("Wind: " + data.list[0].wind.speed + "mph");
+            $('#humidity').text("Humidity: " + data.list[0].main.humidity +"%");
+
             
-        })
-        //idea: use forecastURL for today's data and forecast data. 
-        //line 40 alt : var = link + data.list[0].weather[0].icon
-        //will need to edit other lines of code too
+        });
+    
         
     }
 
