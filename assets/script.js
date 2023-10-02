@@ -48,6 +48,37 @@ function getWeather(){
             $('#temp').text("Temperature: "+ data.list[0].main.temp + "° Farenheit");
             $('#wind').text("Wind: " + data.list[0].wind.speed + "mph");
             $('#humidity').text("Humidity: " + data.list[0].main.humidity +"%");
+            //add icons to forecast days
+            var iconURLArray = [];
+            var forecastTemps = [];
+            var forecastWindArr = [];
+            var forecastHumidityArr = [];
+            //loop through next 5 days in data and get urls for each forecast item
+            for (var i=0; i<5; i++){
+                var forecastIconURL = "https://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png";
+                iconURLArray.push(forecastIconURL);
+                forecastTemps.push("Temp: " + data.list[i].main.temp + "° Farenheit");
+                forecastWindArr.push("Wind: " + data.list[i].wind.speed + "mph");
+                forecastHumidityArr.push("Humidity: " + data.list[i].main.humidity +"%");
+                var forecastIcon = $('<img>');
+                forecastIcon.attr('src', iconURLArray[i]);
+                forecastIcon.attr('style', 'width:30px')
+                $('#forecast').children().eq(i).append(forecastIcon);
+                var temp = $('<div>')
+                $('#forecast').children().eq(i).append(temp);
+                temp.text(forecastTemps[i]);
+
+            }
+            // var forecast1Icon = document.createElement('img');
+            // forecast1Icon.setAttribute('src', iconURLArray[0]);
+            // forecast1Icon.setAttribute('style', 'width:30px');
+            // $('#forecast-1').append(forecast1Icon);
+            
+
+
+            console.log($('#forecast').children().eq(0));
+        
+
 
             
         });
