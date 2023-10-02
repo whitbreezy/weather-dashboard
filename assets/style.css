@@ -10,9 +10,9 @@ button{
 }
 .forecast-item{
     font-size:18px;
-    background-color:#06367D;
+    background-color:aliceblue;
     padding: 16px;
-    color: white;
+    color: var(--bs-dark);
 }
 .forecast-icon{
     width: 30px;

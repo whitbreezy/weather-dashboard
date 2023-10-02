@@ -48,43 +48,55 @@ function getWeather(){
             $('#temp').text("Temperature: "+ data.list[0].main.temp + "° Farenheit");
             $('#wind').text("Wind: " + data.list[0].wind.speed + "mph");
             $('#humidity').text("Humidity: " + data.list[0].main.humidity +"%");
-            //add icons to forecast days
+            //create arrays for next 5 days' data
             var iconURLArray = [];
             var forecastTemps = [];
             var forecastWindArr = [];
             var forecastHumidityArr = [];
-            //loop through next 5 days in data and get urls for each forecast item
+            //loop through next 5 days in data and add data to UI
             for (var i=0; i<5; i++){
                 var forecastIconURL = "https://openweathermap.org/img/wn/" + data.list[i].weather[0].icon + "@2x.png";
                 iconURLArray.push(forecastIconURL);
-                forecastTemps.push("Temp: " + data.list[i].main.temp + "° Farenheit");
-                forecastWindArr.push("Wind: " + data.list[i].wind.speed + "mph");
+                forecastTemps.push("Temp: " + data.list[i].main.temp + "°");
+                forecastWindArr.push("Wind: " + data.list[i].wind.speed + " mph");
                 forecastHumidityArr.push("Humidity: " + data.list[i].main.humidity +"%");
+                //create elements for the data being displayed
                 var forecastIcon = $('<img>');
                 forecastIcon.attr('src', iconURLArray[i]);
-                forecastIcon.attr('style', 'width:30px')
+                forecastIcon.attr('style', 'width: 50px')
                 $('#forecast').children().eq(i).append(forecastIcon);
-                var temp = $('<div>')
-                $('#forecast').children().eq(i).append(temp);
-                temp.text(forecastTemps[i]);
+                var tempEl = $('<div>')
+                $('#forecast').children().eq(i).append(tempEl);
+                tempEl.text(forecastTemps[i]);
+                var windEl = $('<div>');
+                $('#forecast').children().eq(i).append(windEl);
+                windEl.text(forecastWindArr[i]);
+                var humidityEl = $('<div>');
+                $('#forecast').children().eq(i).append(humidityEl);
+                humidityEl.text(forecastHumidityArr[i]);
+            }
+            
+            var currentWeather = {
+                city: city,
+                currentTemp: $('#temp').text(),
+                currentWind: $('#wind').text(),
+                currentHumidity: $('#humidity').text(),
 
             }
-            // var forecast1Icon = document.createElement('img');
-            // forecast1Icon.setAttribute('src', iconURLArray[0]);
-            // forecast1Icon.setAttribute('style', 'width:30px');
-            // $('#forecast-1').append(forecast1Icon);
-            
 
+            console.log(currentWeather);
 
-            console.log($('#forecast').children().eq(0));
-        
+            localStorage.setItem(currentWeather.city)
 
-
-            
         });
-    
-        
-    }
+
+
+};
+
+
+
+
+
 
 
 
