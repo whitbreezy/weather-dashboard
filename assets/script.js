@@ -5,6 +5,7 @@ var forecastContainer = $('#forecast');
 var cityInput = $('#cityInput');
 var searchBtn = $('#search-btn');
 var today = dayjs();
+var lastCities = []
 
 //puts current date in the H2
 $('#currentDate').text(today.format('MM-DD-YYYY'))
@@ -20,8 +21,7 @@ $('#date-5').text(today.add(5, 'day').format('MM-DD-YYYY'));
 function getWeather(){
     //create var city for user input
     var city = cityInput.val().trim();
-    //add api call for current weather data
-    var weatherURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + city +',us'+ "&appid=" + APIKey + "&units=imperial";
+   
     //API call for forecast
     var forecastURL = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city +',us'+ "&appid=" + APIKey + "&units=imperial";
     //fetch current weather API data
@@ -74,33 +74,45 @@ function getWeather(){
                 var humidityEl = $('<div>');
                 $('#forecast').children().eq(i).append(humidityEl);
                 humidityEl.text(forecastHumidityArr[i]);
+                
             }
+            lastCities.push(city);
+            localStorage.setItem("lastCity", JSON.stringify(lastCities))
             
-            var currentWeather = {
-                city: city,
-                currentTemp: $('#temp').text(),
-                currentWind: $('#wind').text(),
-                currentHumidity: $('#humidity').text(),
-
-            }
-
-            console.log(currentWeather);
-
-            localStorage.setItem(currentWeather.city)
-
+            
         });
-
-
+        
 };
 
 
 
-
-
-
-
-
+function init(){
+    var storedCity = JSON.parse(localStorage.getItem("lastCity"));
+    if (storedCity !== null){
+        var cityBtn = $('<button>');
+        cityBtn.text(storedCity);
+        cityBtn.attr('id', '#city-button');
+        cityBtn.addClass("btn btn-secondary mb-3");
+        $('#city-btn-container').append(cityBtn);
+    }
+    cityBtn.on('click', function(e){
+        city = cityBtn.text();
+        $('#cityHeader').text(cityBtn.text());
+        getWeather();
+    })
+}
 
 //event listener for search button
-searchBtn.on('click', getWeather);
+searchBtn.on('click', function(e){
+    e.preventDefault();
+    var cityName = cityInput.val().trim();
+    if (cityName ===''){
+        return;
+    }
+getWeather();
 
+cityInput.val('');
+});
+
+
+init();

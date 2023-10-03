@@ -4,12 +4,7 @@
 
 ## Description
 
-Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
-
-- What was your motivation?
-- Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
-- What problem does it solve?
-- What did you learn?
+This weather dashboard uses an openWeather API to get current weather and a 5-day forecast for the city entered by the user. This app also stores the last city searched and presents it as a button for the user to easily click on.
 
 
 ## Installation
@@ -18,22 +13,16 @@ Go to my repo in github and clone the code to your machine: https://github.com/w
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
+Screenshot of Atlanta's weather. Salt Lake City was searched last, so it appears as a button under recent searches.
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
 
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
+![alt text](assets/img/screenshot.png)
+
 
 ## Credits
 
-List your collaborators, if any, with links to their GitHub profiles.
-
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
-
-If you followed tutorials, include links to those here as well.
+Used my notes from class for help on this.
 
 ## License
 
-See github repo for license info
+See github repo for license info.
