@@ -4,7 +4,9 @@
 
 ## Description
 
-This weather dashboard uses an openWeather API to get current weather and a 5-day forecast for the city entered by the user. This app also stores the last city searched and presents it as a button for the user to easily click on.
+This weather dashboard uses an openWeather API to get current weather and a 5-day forecast for the city entered by the user. This app also stores the last city searched and presents it as a button for the user to easily click on. User should refresh the page to search for another city.
+
+Link to live application: https://whitbreezy.github.io/weather-dashboard/
 
 
 ## Installation
