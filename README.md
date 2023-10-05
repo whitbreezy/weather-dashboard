@@ -23,7 +23,7 @@ Screenshot of Atlanta's weather. Salt Lake City was searched last, so it appears
 
 ## Credits
 
-Used my notes from class for help on this.
+Used my notes from class for help on this. Also referenced chat GPT for help on saving recent searches to local storage and using them for buttons
 
 ## License
 
